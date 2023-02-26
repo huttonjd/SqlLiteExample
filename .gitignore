@@ -1,5 +1,8 @@
 node_modules
+yarn.lock
 .expo/
+.expo-shared/
+.vscode/
 dist/
 npm-debug.*
 *.jks
