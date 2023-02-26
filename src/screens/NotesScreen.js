@@ -101,6 +101,7 @@ export default function NotesScreen() {
 
   return (
     <View  style={styles.container}>
+      <Text>Notes</Text>
       {showNotesOnScreen()}
     </View>
   )
