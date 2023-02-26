@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "SQLiteExample",
-    "slug": "hutton_engineering",
+    "name": "SQLLiteExample",
+    "slug": "sqlite_example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/icon.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#AEDEDE"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -24,17 +24,11 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#AEDE55"
-      },
-      "package": "com.minjae.app"
+        "backgroundColor": "#FFFFFF"
+      }
     },
     "web": {
-      "favicon": "./assets/images/icon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "5abb784a-c86d-44dd-92e4-e69ea611ec08"
-      }
+      "favicon": "./assets/images/favicon.png"
     }
   }
 }

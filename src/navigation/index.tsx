@@ -12,10 +12,9 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import {colors} from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import AboutMeScreen from '../screens/AboutMeScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../constants/types';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../constants/types'
 import LinkingConfiguration from './LinkingConfiguration';
-import HomeScreen from '../screens/HomeScreen';
+import NotesScreen from '../screens/NotesScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -38,7 +37,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={AboutMeScreen} options={{ title: 'About Me' }}/>
+        <Stack.Screen name="Notes" component={NotesScreen} options={{ title: 'Notes' }}/>
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -55,19 +54,19 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="TabTwo"
       screenOptions={{
         tabBarActiveTintColor: colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
         name="TabOne"
-        component={HomeScreen}
+        component={NotesScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: '',
-          tabBarIcon: ({ color }) => <Ionicons name="md-planet-outline" size={24} color={color}/>,
+          tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color}/>,
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate('Notes')}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
@@ -80,7 +79,7 @@ function BottomTabNavigator() {
             </Pressable>
           ),
         })}
-      />
+      />      
     </BottomTab.Navigator>
   );
 }
