@@ -7,9 +7,6 @@ import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation/Navigation';
 
-import NotesScreen from './src/screens/NotesScreen';
-
-
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
