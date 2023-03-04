@@ -12,6 +12,7 @@ import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../con
 import LinkingConfiguration from './LinkingConfiguration';
 import HomeScreen from '../screens/HomeScreen';
 import NotesScreen from '../screens/NotesScreen';
+import PersonsScreen from '../screens/PersonsScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -35,6 +36,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Group >
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Home' }}/>
+        <Stack.Screen name="Persons" component={PersonsScreen} options={{ title: 'Persons' }}/>
         <Stack.Screen name="Notes" component={NotesScreen} options={{ title: 'Notes' }}/>
       </Stack.Group>
     </Stack.Navigator>
@@ -78,7 +80,7 @@ function BottomTabNavigator() {
           ),
         })}
       />      
-       <BottomTab.Screen
+      <BottomTab.Screen
         name="TabTwo"
         component={NotesScreen}
         options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
@@ -100,7 +102,30 @@ function BottomTabNavigator() {
           ),
         })}
       />      
+      <BottomTab.Screen
+        name="TabThree"
+        component={PersonsScreen}
+        options={({ navigation }: RootTabScreenProps<'TabThree'>) => ({
+          title: '',
+          tabBarIcon: ({ color }) => <Ionicons name="people" size={24} color={color}/>,
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.navigate('Persons')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="info-circle"
+                size={25}
+                color={colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+        })}
+      />      
     </BottomTab.Navigator>
+    
   );
 }
 
