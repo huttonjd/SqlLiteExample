@@ -2,11 +2,12 @@
 React-Native SQL Lite Example
 
 # Screen shots
-Main Screen | Notes | Person
+Home | Notes | Person
 :-----------:|:-----------:|:-----------:
-<img src="./screenshots/andriod/MainScreen.jpg" height="400" /> | <img src="./screenshots/andriod/Drawer.jpg" height="400" /> | <img src="./screenshots/andriod/BottomNaviagation.jpg" height="400" />
-Material Bottom Tabs | Flatlist Images | &nbsp;
-<img src="./screenshots/andriod/Material%20Bottom%20Tabs.jpg" height="400" /> |<img src="./screenshots/andriod/Flatlist%20Images.jpg" height="400" /> | <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<img src="./screenshots/Home.jpg" height="400" /> | <img src="./screenshots/Notes.jpg" height="400" /> | <img src="./screenshots/Persons.jpg" height="400" />
+Notes Add | Person Add
+:-----------:|:-----------:
+<img src="./screenshots/NotesAdd.jpg" height="400" /> | <img src="./screenshots/PersonsAdd.jpg" height="400" />
 
 
 ## Prerequisites
