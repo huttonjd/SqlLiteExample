@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IPerson, addPerson, searchAPerson, searchPerson, createTable, deletePerson, editPerson, deleteAllPersons } from "../database/Persons"
-import { StyleSheet, Text, View } from 'react-native';
+import { IPerson, addPerson, getAllPersons, getAPerson, createTable, deletePerson, editPerson, deleteAllPersons } from "../database/Persons"
+import { SafeAreaView, StyleSheet, Text, View, Button } from 'react-native';
 
 export default function PersonsScreen() {
   const [Persons, setPersons] = useState<IPerson[]>([]);
@@ -12,8 +12,8 @@ export default function PersonsScreen() {
     createTable();
     //DeleteAllOfThePersons();
 
-    //InitalizePersonTableIfNot();
-    showPersons();
+    InitalizePersonTable();
+    retrievePersons();
 
     setIsLoading(false);
     console.log("screens:PersonScreen:useEffect: END");
@@ -30,8 +30,8 @@ export default function PersonsScreen() {
     
   }
 
-  async function InitalizePersonTableIfNot(){
-    let rtnPersons = await searchPerson(); 
+  async function InitalizePersonTable(){
+    let rtnPersons = await getAllPersons(); 
     if( rtnPersons.length == 0){
       AddaPerson({
         first: "John",
@@ -52,23 +52,25 @@ export default function PersonsScreen() {
     console.log(rtnPersons);
   }
 
-  async function DeleteAllOfThePersons() {
-    console.log("screens:PersonScreen:DeleteAllOfThePersons: START");
-    console.log(await deleteAllPersons());    
-    console.log("screens:PersonScreen:DeleteAllOfThePersons: END");
+
+
+  async function AddAllPerson(){
+    await InitalizePersonTable();
+    await retrievePersons();
   }
+
 
   async function AddaPerson(personData) {
     console.log(await addPerson(personData));
     setPerson(personData);
   }
 
-  async function showAPerson(id) {
-    console.log(await searchAPerson(id));
+  async function retrieveAPerson(id) {
+    console.log(await getAPerson(id));
   }
 
-  async function showPersons() {
-    let rtnPersons = await searchPerson(); 
+  async function retrievePersons() {
+    let rtnPersons = await getAllPersons(); 
     console.log(rtnPersons);
     //console.log(await searchPerson());
     setPersons(rtnPersons);
@@ -82,32 +84,89 @@ export default function PersonsScreen() {
     console.log(await deletePerson(id));
   }
 
+  async function DeleteAllOfThePersons() {
+    console.log("screens:PersonScreen:DeleteAllOfThePersons: START");
+    console.log(await deleteAllPersons());    
+    retrievePersons();
+    console.log("screens:PersonScreen:DeleteAllOfThePersons: END");
+  }
+
+
   function showPersonsOnScreen() {
     console.log("screens:Person:showNames: # of Persons: " + Persons.length);
     
     return Persons.map((Persons, index) => {
       return (
         <View key={index}>
-          <Text>{Persons.first} | {Persons.last} | {Persons.position}</Text>
+          <Text style={styles.data}>{Persons.first} | {Persons.last} | {Persons.position}</Text>
         </View>
       );
     });
   };
 
+  const Separator = () => <View style={styles.separator} />;
+  const Space = () => <View style={styles.space} />;
 
   return (
-    <View  style={styles.container}>
-      <Text>Persons</Text>
-      {showPersonsOnScreen()}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View >
+        
+        <Text style={styles.title}>Persons</Text>
+        
+        {showPersonsOnScreen()}
+
+        <Separator />
+
+        <Space />
+
+        <Button
+            disabled={Persons.length == 0}
+            onPress={DeleteAllOfThePersons}
+            title="Delete All Persons"
+            color="#841584"
+            accessibilityLabel="Delete All Persons and refresh"
+          />
+        
+        <Space />
+        
+        <Button
+            disabled={Persons.length > 0}
+            onPress={AddAllPerson}
+            title="Add All Persons "
+            color="#4267B2"
+            accessibilityLabel="Add Persons and refresh"
+          />
+      </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    marginHorizontal: 16,
+  },  
+  title: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginVertical: 8,
+  },
+  data: {
+    textAlign: 'center',
+    
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  separator: {
+    marginVertical: 8,
+    borderBottomColor: '#737373',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  space: {
+    marginVertical: 8,
   },
 });

@@ -32,7 +32,7 @@ export async function addPerson(personData) {
   });
 }
 
-export async function searchPerson() {
+export async function getAllPersons() {
   return new Promise((resolve) => {
     db.transaction((transaction) => {
       transaction.executeSql(
@@ -46,7 +46,7 @@ export async function searchPerson() {
   });
 }
 
-export async function searchAPerson(idpersonData) {
+export async function getAPerson(idpersonData) {
   return new Promise((resolve) => {
     db.transaction((transaction) => {
       transaction.executeSql(

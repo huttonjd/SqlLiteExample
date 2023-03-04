@@ -6,7 +6,6 @@ export interface INote  {
   text: string
 }
 
-
 export function createTable() {
   db.transaction((transaction) => {
     transaction.executeSql(
@@ -33,7 +32,7 @@ export async function addNote(nota) {
   });
 }
 
-export async function searchNote() {
+export async function getAllNotes() {
   return new Promise((resolve) => {
     db.transaction((transaction) => {
       transaction.executeSql(
@@ -47,7 +46,7 @@ export async function searchNote() {
   });
 }
 
-export async function searchANote(idNota) {
+export async function getANote(idNota) {
   return new Promise((resolve) => {
     db.transaction((transaction) => {
       transaction.executeSql(
